@@ -44,24 +44,34 @@ public class LinkedList<T> {
     }
 
     private Node<T> getNode(int index){
-        indexValidation(index);
-        Node<T> auxiliaryNode = entryReference;
-        Node<T> returnNode = null;
+        try {
+            indexValidation(index);
+            Node<T> auxiliaryNode = entryReference;
+            Node<T> returnNode = null;
             for (int i = 0; i <= index; i++) {
                 returnNode = auxiliaryNode;
                 auxiliaryNode = auxiliaryNode.getNextNode();
-            }
+        }
             return returnNode;
+        } catch (Exception e){
+            System.out.println("Please enter a valid index. If needed, please check the size of your list.");
+        }
+        return null;
     }
 
     private void indexValidation(int index){
-        if (index >= size()){
-            throw new IndexOutOfBoundsException("The greatest index in this list is " + (size()-1) + ".");
+            if (index >= size()){
+                System.out.println("The greatest index in this list is " + (size()-1) + ".");
         }
     }
 
-    public T get(int index){
-        return getNode(index).getContent();
+    public T get(int index) {
+        try {
+            return getNode(index).getContent();
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 
     public T remove(int index){
